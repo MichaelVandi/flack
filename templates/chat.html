@@ -14,20 +14,41 @@
     <title>Flack</title>
   </head>
   <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white; box-shadow: 11px 22px 27px -5px rgba(0,0,0,0.88);
+      -webkit-box-shadow: 11px 22px 27px -5px rgba(0,0,0,0.60);
+      -moz-box-shadow: 11px 22px 27px -5px rgba(0,0,0,0.60);">
+          <a class="navbar-brand" href="#">
+              <img id="logo" src="{{url_for('static', filename='logo.png')}}" width="200px" height="66px" alt="logo">
+            </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
+           <ul class="navbar-nav ml-auto flex-nowrap">
+              <li class="nav-item active">
+                <a class="nav-link" href="{{url_for ('index')}}"> <h4 class="nav-text">Create Channel</h4> <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+        </div>
+        </nav>
       
 
     
-    <div class="container">
-        <div class= "row">
+    <div class="container" style="height: 80%;">
+        <div class= "row" style="height: 100%">
 
-            <div class="col-md-4">
+            <div class="col-md-4 channels-div">
 
 
             </div>
             <div class="col-md-8">
                 <!-- Div containing the list of messages -->
                 <div class="messages-div">
+                    <h5> This Channel</h5>
+                    <div class="message-list">
 
+                    </div>
                 </div>
 
                 <!-- Div to write a text message -->
