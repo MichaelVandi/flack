@@ -10,6 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static' , filename='style.css') }}">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 
     <title>Flack</title>
   </head>
@@ -27,7 +29,7 @@
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarSupportedContent">
            <ul class="navbar-nav ml-auto flex-nowrap">
               <li class="nav-item active">
-                <a class="nav-link" href="{{url_for ('index')}}"> <h4 class="nav-text">Create Channel</h4> <span class="sr-only">(current)</span></a>
+                <button class="nav-link" id="create"> <h4 class="nav-text">Create Channel</h4> <span class="sr-only">(current)</span></button>
               </li>
             </ul>
         </div>
@@ -38,8 +40,12 @@
     <div class="container" style="height: 80%;">
         <div class= "row" style="height: 100%">
 
+            <!-- Display a list of all the channels -->
             <div class="col-md-4 channels-div">
+                <ul id="channels" style="list-style: none">
 
+                </ul>
+            
 
             </div>
             <div class="col-md-8">

@@ -14,11 +14,36 @@ Session(app)
 
 # List to store usernames
 names = []
+channels=[]
 
 @app.route("/chat", methods=["GET", "POST"])
 def chat():
 
-    return render_template("chat.html", username= session["username"])
+    return render_template("chat.html", username= session["username"], channels=channels)
+
+@socketio.on("create channel")
+def createChannel(name):
+    # Check if the channel list is empty and add fist channel
+    if len(channels) == 0:
+        # Channels are empty add new channel
+        channels.append(str(name))
+        # Send the message
+        message="Channel Created Successfully"
+        emit("create feedback", {"message": message, "status": 1}, broadcast=True)
+
+    # Else if the channel list is not empty, check if an existing channel is in list
+    else:
+        if str(name) in channels:
+            #Duplicate Channel, send error message
+            message="Sorry there is another channel with the same name"
+            emit("create feedback", {"message": message, "status": 0}, broadcast=True)
+
+        # Otherwise, add the channel to the list of channels
+        else:
+            channels.append(str(name))
+            # Send the message
+            message="Channel Created Successfully"
+            emit("create feedback", {"message": message, "status": 1}, broadcast=True)
 
 
 @app.route("/" , methods=["GET", "POST"])
@@ -31,8 +56,8 @@ def index():
         if session["username"] == "":
             return render_template("index.html")
 
-        #If the user already entered a username, open the chat route
-        return render_template("chat.html", username=session["username"])
+        # If the user already entered a username, open the chat route
+        return render_template("chat.html", username=session["username"], channels=channels)
 
     elif request.method == "POST":
         # Get the username sent from the post request
@@ -44,9 +69,9 @@ def index():
             names.append(username)
             session["username"] = username
             # Open the chat route
-            return render_template("chat.html", username= username)
+            return render_template("chat.html", username= username , channels=channels)
 
-        # if there were pre existing names
+        # If there were pre existing names
         # Check if this particular username didn't exist
         if username in names:
             # Username was already there, return error
@@ -55,7 +80,7 @@ def index():
             # Username wasn't there, allow
             names.append(username)
             session["username"] = username
-            #Open the chat route
-            return render_template("chat.html", username=username)
+            # Open the chat route
+            return render_template("chat.html", username=username, channels=channels)
 
    
