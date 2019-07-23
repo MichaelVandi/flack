@@ -45,7 +45,11 @@
             <div class="col-md-4 channels-div">
                 <h5>All channels</h5>
                 <ul id="channels" style="list-style: none">
-
+                <!-- Personal Touch, if user closes the browser, the channel list still remain-->
+                <!-- Personal Touch, if user want connected when channel was created, they can still see it with all texts-->
+                    {% for channel in channels %}
+                      <li class="channel">#{{channel}}</li>
+                    {% endfor %}
                 </ul>
             
 

@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     var channelName_;
     // Function to create channel
     document.querySelector('#create').onclick = function createChannel(){
-        //Making the prompt alert stay a little longer
         var channelName = prompt("Enter the channel Name");
         // If channel name is empty
         if(channelName===""){
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         else{
             // Send the data to flask server
             channelName_=channelName;
-            
             socket.emit('create channel', {'name': channelName});
         }
     }
@@ -118,7 +116,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // What happens when text form is submitted
     document.querySelector("#messageForm").onsubmit = () =>{
         const request = new XMLHttpRequest();
-        var data;
         request.open('POST', '/text');
 
         // Callback goes here

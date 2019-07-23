@@ -41,18 +41,20 @@ def text():
 
 @socketio.on("open channel")
 def openChannel(data):
-    index= int(data["id"])
     channelTexts = messages[data["name"]]
+    # Only store 100 items
+    if len(channelTexts) > 100:
+        # Remove the Oldest message
+        channelTexts.pop(0)
     # Return channelTexts to DOM
     emit("channel opened", {"messages": channelTexts}, broadcast=False)
 
 @socketio.on('flackbot')
 def flackbot(data):
     # Create new mesage by Flackbot in the channel
-    content = "New channel created by " + session["username"]
+    content = "New channel created "
     # Text object is a dictionary with 3 keys, the username, the text content and the timestamp
     text = {'username': 'Flackbot', 'content': content, 'date': data["date"]}
-    index =int(data["id"])
     messages[data["name"]].append(text)
 
 @socketio.on("create channel")
@@ -70,7 +72,7 @@ def createChannel(data):
         if str(data["name"]) in channels:
             #Duplicate Channel, send error message
             message="Sorry there is another channel with the same name"
-            emit("create feedback", {"message": message, "status": 0}, broadcast=True)
+            emit("create feedback", {"message": message, "status": 0}, broadcast=False)
 
         # Otherwise, add the channel to the list of channels
         else:
