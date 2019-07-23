@@ -7,6 +7,9 @@ button{
     background: transparent;
     border: none;
 }
+button:hover{
+    cursor: pointer;
+}
 #footer-div{
     width: 100%;
     height: auto;
@@ -66,10 +69,10 @@ button{
 
     .nav-text{
         color: black;
-        padding: 5px;
-        border: 0.5px solid grey;
+        padding: 7px;
+        border: 0.5px solid #CBCECF;
         font-weight: normal;
-        border-radius: 13px;
+        border-radius: 9px;
         text-align: center;
     }
     .write-text-div{
@@ -149,7 +152,7 @@ button{
         overflow-y: auto;
         padding: 5px;
         width: 100%;
-        height: 100%;
+        height: 65vh;
     }
     .channels-div{
         overflow-y: auto;
@@ -158,16 +161,38 @@ button{
         height: 100%;
         width: 100%;
         border: 0.5px solid #CBCECF;
-        padding: 10px;
+        padding-top: 10px;
     }
     #channels li {
         padding-top: 5px;
         padding-bottom: 5px;
+        margin: 0;
         width: 100%;
         border-bottom: 0.35px solid #CBCECF;
     }
     #channels li:hover{
         cursor: pointer;
+    }
+    .name_time{
+        display: flex;
+        flex-direction: row;
+        margin-top: 7px;
+    }
+    .nameParagraph{
+        font-weight: bold;
+        margin-right: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
+    }
+    .timeParagraph{
+        color: grey;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .contentParagraph{
+        margin: 0;
+        padding: 0;
     }
 
     @media (min-width:200px) and (max-width:800px) {
