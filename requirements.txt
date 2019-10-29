@@ -1,2 +1,4 @@
 Flask
 Flask-SocketIO
+Flask-Session
+ItsDangerous==0.24
